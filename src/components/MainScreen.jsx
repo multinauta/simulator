@@ -1,5 +1,6 @@
-import { FormLabel, Input, Slider, TableCell, TableRow } from "@mui/material"
+import { FormLabel, Input, MenuItem, Select, Slider, TableCell, TableRow } from "@mui/material"
 import { useState } from "react"
+import { EqualTo } from "./EqualTo";
 import { Pie } from "./Pie";
 import { VehiclePrice } from "./VehiclePrice";
 
@@ -10,10 +11,6 @@ export const MainScreen = () => {
     const [pieValue, setPieValue] = useState(0);
     const [piePercentageValue, setPiePercentageValue] = useState(0);
     const [priceValue, setPriceValue] = useState('');
-
-    const handlePieValue = ({ target }) => {
-
-    }
 
     const onSlideChange = ({ target }) => {
         setPiePercentageValue(target.value)
@@ -29,20 +26,15 @@ export const MainScreen = () => {
                     setPriceValue={setPriceValue}
                 />
                 <Pie
-                  pieValue={pieValue}
-                 />
+                    pieValue={pieValue}
+                />
                 <Slider
                     name="pieSlider"
                     onChange={onSlideChange}
                 />
-                <TableRow>
-                    <TableCell>
-                        Equivalente a:
-                    </TableCell>
-                    <TableCell>
-                        {piePercentageValue}%
-                    </TableCell>
-                </TableRow>
+                <EqualTo
+                    piePercentageValue={piePercentageValue}
+                />
                 <TableRow>
                     <TableCell>
                         monto líquido del crédito:
@@ -56,7 +48,15 @@ export const MainScreen = () => {
                         N° Cuotas:
                     </TableCell>
                     <TableCell>
-                        48
+                        <Select 
+                        defaultValue={12}
+                        Label="Cuotas"
+                        >
+                            <MenuItem value="12">12</MenuItem>
+                            <MenuItem value="24">24</MenuItem>
+                            <MenuItem value="36">36</MenuItem>
+                            <MenuItem value="48">48</MenuItem>
+                        </Select>
                     </TableCell>
                 </TableRow>
                 <TableRow>
